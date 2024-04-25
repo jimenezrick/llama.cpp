@@ -38,7 +38,8 @@ echo Prompt file: $PROMPT_FILE
   --file ${PROMPT_FILE} \
   --reverse-prompt "${USER_NAME}:" \
   --in-prefix '[INST] ' \
-  --in-suffix ' [/INST]'
+  --in-suffix ' [/INST]' \
+  --prompt-cache prompt.cache
   # "$@"
   # --n_predict "$N_PREDICTS" \
   # --in-prefix '<|eot_id|><|start_header_id|>user<|end_header_id|> ' \

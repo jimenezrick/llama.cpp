@@ -8,7 +8,7 @@ in a concise and clear way.
 The next is part of the codebase that ${USER_NAME} wants to understand with the help of ${AI_NAME}. It's a deep learning framework called \`teenygrad\` and it's a
 small version of \`pytorch\`:
 
-$(cd /mnt/scratch-nvme/ricardo/T/teenygrad; ~/KATAS/llm-utils/src/main.rs teenygrad/tensor.py)
+$(cd /mnt/scratch-nvme/ricardo/T/teenygrad; ~/KATAS/llm-utils/src/main.rs teenygrad/tensor.py mnist.py)
 
 <s>[INST] ${USER_NAME}: How can I create a tensor with zeros with shape (16, 16)? [/INST]
 ${AI_NAME}: You can use the class \`Tensor\` to create such tensor with \`Tensor.zeros(16, 16)\`.</s>

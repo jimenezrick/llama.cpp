@@ -7,8 +7,8 @@ source $CUDAENV
 
 env LLAMA_CUDA=1 make -j
 
-# MODEL="${MODEL:-./models/Meta-Llama-3-8B-Instruct.Q8_0.gguf}"
-MODEL="${MODEL:-./models/mistral-7b-instruct-v0.2.Q5_K_M.gguf}"
+# MODEL="${MODEL:-./models/mistral-7b-instruct-v0.2.Q5_K_M.gguf}" # https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.2-GGUF
+MODEL="${MODEL:-./models/Llama-3-8B-Instruct-32k-v0.1.Q5_K_M.gguf}" # https://huggingface.co/MaziyarPanahi/Llama-3-8B-Instruct-32k-v0.1-GGUF
 # PROMPT_TEMPLATE=${PROMPT_TEMPLATE:-./prompts/code.txt}
 # PROMPT_TEMPLATE=${PROMPT_TEMPLATE:-./prompts/chat.txt}
 PROMPT_TEMPLATE=${1:-./prompts/mistral-code.txt}
@@ -24,7 +24,7 @@ N_THREAD="${N_THREAD:-8}"
 # For example, override the context size by doing: ./chatLLaMa --ctx_size 1024
 # GEN_OPTIONS="-ngl 9999"
 # GEN_OPTIONS="--ctx-size $((26 * 1024))"
-GEN_OPTIONS="${GEN_OPTIONS:---ctx-size $((26 * 1024)) --temp 0.7 --top_k 40 --top_p 0.5 --repeat_last_n 256 --repeat_penalty 1.17647 -ngl 9999}"
+GEN_OPTIONS="${GEN_OPTIONS:---ctx-size $((22 * 1024)) -ngl 9999}"
 
 PROMPT_FILE=$(mktemp -t llamacpp_prompt.XXXXXXX.txt)
 bash $PROMPT_TEMPLATE >$PROMPT_FILE

@@ -2,10 +2,11 @@
 
 set -e
 
-CUDAENV=/mnt/scratch-nvme/ricardo/CUDA12/cuda.env
+CUDAENV=~/bin/cuda.env
 source $CUDAENV
 
-env LLAMA_CUDA=1 make -j
+cmake -B build -DGGML_CUDA=ON
+cmake --build build --config Release -j8
 
 # MODEL="${MODEL:-./models/mistral-7b-instruct-v0.2.Q5_K_M.gguf}" # https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.2-GGUF
 MODEL="${MODEL:-./models/Llama-3-8B-Instruct-32k-v0.1.Q5_K_M.gguf}" # https://huggingface.co/MaziyarPanahi/Llama-3-8B-Instruct-32k-v0.1-GGUF

@@ -8,6 +8,7 @@ source $CUDAENV
 cmake -B build -DGGML_CUDA=ON
 cmake --build build --config Release -j8
 
+# MODEL="${MODEL:-./models/DeepSeek-R1-Distill-Llama-8B-Q8_0.gguf}" # https://huggingface.co/unsloth/DeepSeek-R1-Distill-Llama-8B-GGUF
 # MODEL="${MODEL:-./models/mistral-7b-instruct-v0.2.Q5_K_M.gguf}" # https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.2-GGUF
 MODEL="${MODEL:-./models/Llama-3-8B-Instruct-32k-v0.1.Q5_K_M.gguf}" # https://huggingface.co/MaziyarPanahi/Llama-3-8B-Instruct-32k-v0.1-GGUF
 # PROMPT_TEMPLATE=${PROMPT_TEMPLATE:-./prompts/code.txt}
@@ -32,7 +33,7 @@ bash $PROMPT_TEMPLATE >$PROMPT_FILE
 echo Prompt file: $PROMPT_FILE
 
 # shellcheck disable=SC2086 # Intended splitting of GEN_OPTIONS
-./main $GEN_OPTIONS \
+./build/bin/llama-cli $GEN_OPTIONS \
   --model "$MODEL" \
   --threads "$N_THREAD" \
   --color --interactive \
@@ -40,8 +41,13 @@ echo Prompt file: $PROMPT_FILE
   --reverse-prompt "${USER_NAME}:" \
   --in-prefix '[INST] ' \
   --in-suffix ' [/INST]' \
-  --prompt-cache prompt.cache
+  --prompt-cache prompt.cache \
+  --multiline-input
+  # --no-conversation
+  # --prompt '<｜User｜>What is 1+1?<｜Assistant｜>' \
+
   # "$@"
   # --n_predict "$N_PREDICTS" \
   # --in-prefix '<|eot_id|><|start_header_id|>user<|end_header_id|> ' \
   # --in-suffix '<|eot_id|><|start_header_id|>assistant<|end_header_id|> ' \
+  # --cache-type-k q8_0 \

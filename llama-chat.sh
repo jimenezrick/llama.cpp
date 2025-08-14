@@ -10,4 +10,8 @@ cmake --build build --config Release -j8
 
 # Download model at: ~/.cache/llama.cpp
 # ./build/bin/llama-cli -hf ggml-org/gemma-3n-E4B-it-GGUF:Q8_0
-./build/bin/llama-cli -m models/ggml-org_gemma-3n-E4B-it-GGUF_gemma-3n-E4B-it-Q8_0.gguf -ngl 9999 --color --multiline-input
+
+# CLI
+# ./build/bin/llama-cli -m models/ggml-org_gemma-3n-E4B-it-GGUF_gemma-3n-E4B-it-Q8_0.gguf -ngl 9999 --color --multiline-input
+# Server
+./build/bin/llama-server -m models/ggml-org_gemma-3n-E4B-it-GGUF_gemma-3n-E4B-it-Q8_0.gguf -ngl 9999
